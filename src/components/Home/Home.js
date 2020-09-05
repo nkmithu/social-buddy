@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Post from '../Post/Post';
+import Container from '@material-ui/core/Container';
 
 const Home = () => {
     const [posts,
@@ -10,13 +11,23 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setPosts(data))
     }, [])
-    console.log(posts.length)
+
     return (
-        <div>
-            {
-                posts.map(post=><Post post ={post} key={post.id}></Post>)
+
+        <Container>
+            
+            <h2 style={{margin:"20px"}}>All posts - Have a look!</h2>
+
+            {posts.map(post =>< Post post = {
+                post
             }
-        </div>
+            key = {
+                post.id
+            } > </Post>)
+}
+
+        </Container>
+
     );
 };
 
