@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentDetails from '../CommentDetails/CommentDetails';
+import Grid from '@material-ui/core/Grid';
 
 const Comment = () => {
 
@@ -12,12 +13,17 @@ const Comment = () => {
             .then(res => res.json())
             .then(data => setComments(data))
     }, [])
+    
+    const gridStyle={
+        margin: "20px auto",
+    }
+
     return (
-        <div>
+        <Grid  item xs={12} sm={6} lg={6} style={gridStyle}>
             {
-                comments.map(comment=><CommentDetails comment={comment}></CommentDetails>)
+                comments.map(comment=><CommentDetails comment={comment} key={comment.id}></CommentDetails>)
             }
-        </div>
+        </Grid>
     );
 };
 
