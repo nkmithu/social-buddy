@@ -12,6 +12,7 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setPosts(data))
     }, [])
+    
     const textStyle = {
         margin: "15px"
     }
