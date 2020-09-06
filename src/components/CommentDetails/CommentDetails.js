@@ -11,8 +11,9 @@ const CommentDetails = (props) => {
     const [singleImg,
         setSingleImg] = useState("");
     useEffect(() => {
-        const url = `https://picsum.photos/id/${id}/200/300`;
-        setSingleImg(url);
+        const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+        fetch(url).then(res => res.json().then(data => setSingleImg(data.url)));
+
     }, [])
 
     comment.img = singleImg;
@@ -34,7 +35,7 @@ const CommentDetails = (props) => {
 
     }));
     const classes = useStyles();
-    const imgStyle ={
+    const imgStyle = {
 
         height: "70px",
         width: "70px",
@@ -42,20 +43,17 @@ const CommentDetails = (props) => {
         borderRadius: "50%",
         margin: "10px auto",
         display: "block",
-        objectFit:"cover"
+        objectFit: "cover"
     }
-    
+
     return (
 
         <Paper className={classes.paper}>
-            <img
-                style={imgStyle}
-                src={img}
-                alt=""/>
+            <img style={imgStyle} src={img} alt=""/>
             <h5>Name: {name}</h5>
             <p>E-mail: {email}</p>
             <p>{body}</p>
-            
+
         </Paper>
     );
 };
